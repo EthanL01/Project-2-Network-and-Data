@@ -1,0 +1,28 @@
+def nrz_encoding(binary_string):
+    return ['High' if bit == '1' else 'Low' for bit in binary_string]
+
+def nrzi_encoding(binary_string):
+    signal = []
+    current = 'Low'
+    for bit in binary_string:
+        if bit == '1':
+            current = 'High' if current == 'Low' else 'Low'
+        signal.append(current)
+    return signal
+
+def manchester_encoding(binary_string):
+    return ['Low-High' if bit == '0' else 'High-Low' for bit in binary_string]
+
+# Example input
+binary_input = "101001"
+
+# Run encodings
+nrz = nrz_encoding(binary_input)
+nrzi = nrzi_encoding(binary_input)
+manchester = manchester_encoding(binary_input)
+
+# Display results
+print("Bit:        ", list(binary_input))
+print("NRZ:        ", nrz)
+print("NRZI:       ", nrzi)
+print("Manchester: ", manchester)
